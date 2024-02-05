@@ -71,12 +71,14 @@ export class MyElement extends LitElement {
       margin: 0
     }
     .loader {
-      margin-top: 200px;
+      margin-top: 500px;
+      position: fixed;
       border: 16px solid #f3f3f3; /* Light grey */
       border-top: 16px solid  #0090f8; /* Blue */
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 84px;
+      height: 84px;
+      z-index: 1200;
       animation: spin 2s linear infinite;
       }
       
@@ -106,7 +108,21 @@ export class MyElement extends LitElement {
   override render() {
    return this.searchTask.render({
      initial: () => html`<div class="loader"></div>`,
-     pending: () => html`<div class="loader"></div>`,
+     pending: () => html`
+     <div class="container">
+     <div class="search">
+     <div class="loader"></div>
+     <search-element
+       .value="${this.value}"
+       .runSearch="${this.runSearch}"
+      ></search-element>
+      <div class="filters">
+      <filter-element
+      .filterBy="${this.filterBy}"
+      .handleFilterBy="${this.handleFilterBy}"
+      ></filter-element>
+  </div>
+     `,
      complete: (data: {
        items: any[];
       }) => {
