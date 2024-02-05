@@ -8,9 +8,9 @@ export const getSearch = async  ({query, order}) => {
       key: env.YOUTUBE_API_KEY,
       type: 'video',
       part: 'snippet',
-      maxResults: '20',
+      maxResults: '3',
       ...(order && { order }),
-      query,
+      q: query,
     };
     let searchParamsString = new URLSearchParams(searchParams).toString();
     const searchRes = await fetch(`${baseURL}/search?${searchParamsString}`);

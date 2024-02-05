@@ -26,8 +26,7 @@ export class MyElement extends LitElement {
       justify-content: center;
       --md-sys-color-primary: #fff;
       --md-sys-color-surface-container-low: #0090f8;
-      --md-elevated-button-container-shape: 5px
-
+      --md-elevated-button-container-shape: 5px;
     }
     .search {
       position: sticky;
