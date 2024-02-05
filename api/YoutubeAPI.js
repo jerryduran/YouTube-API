@@ -2,7 +2,7 @@ import env from '../config.json' assert { type: "json" };
 const baseURL = `https://www.googleapis.com/youtube/v3`;
 //@ts-ignore
 export const getSearch = async ({ query, order }) => {
-    const params = {
+    const searchParams = {
         key: env.YOUTUBE_API_KEY,
         type: 'video',
         part: 'snippet',
@@ -10,8 +10,20 @@ export const getSearch = async ({ query, order }) => {
         ...(order && { order }),
         query,
     };
-    let paramsString = new URLSearchParams(params).toString();
-    const response = await fetch(`${baseURL}/search?${paramsString}`);
-    return await response.json();
+    let searchParamsString = new URLSearchParams(searchParams).toString();
+    const searchRes = await fetch(`${baseURL}/search?${searchParamsString}`);
+    const getSearchID = await searchRes.json();
+    let IDArray = getSearchID.items?.map((video) => video.id.videoId);
+    let ids = IDArray.join(',');
+    const videoParams = {
+        key: env.YOUTUBE_API_KEY,
+        part: "snippet,statistics",
+        maxResults: '25',
+        id: ids,
+    };
+    let videoParamsString = new URLSearchParams(videoParams).toString();
+    const videoRes = await fetch(`${baseURL}/videos?${videoParamsString}`);
+    const data = await videoRes.json();
+    return data;
 };
 //# sourceMappingURL=YoutubeAPI.js.map
