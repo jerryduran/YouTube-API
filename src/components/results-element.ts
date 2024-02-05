@@ -1,7 +1,5 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-
-import '@carbon/web-components/es/components/stack/index.js';
 import '@material/web/iconbutton/filled-icon-button.js';
 
 const url = 'https://www.youtube.com/watch?v=';

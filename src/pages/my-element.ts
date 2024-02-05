@@ -1,9 +1,6 @@
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import { Task } from '@lit/task';
-import '@carbon/web-components/es/components/search/index.js';
-import '@carbon/web-components/es/components/button/index.js';
-import '@carbon/web-components/es/components/text-input/index.js';
 import '@material/web/button/elevated-button.js';
 import '@material/web/icon/icon.js';
 
